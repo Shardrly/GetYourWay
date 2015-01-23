@@ -11,25 +11,22 @@
 <TABLE width="90%" border="1" cellpadding="5">
 <tr>
 
+<td align="center" valign="center" width="25%"><A href="home">Home</A></td>
 <% if (session.getAttribute("userid") != null){
 	%>
-<td align="center" valign="center" width="25%"><A href="home">Home</A></td>
 <td align="center" valign="center" width="25%"><A href="logout">Logout <%=session.getAttribute("userid") %></A></td>
-<td align="center" valign="center" width="25%"><A href="feedback">Feedback</A></td>
-<td align="center" valign="center" width="25%"><A href="about">About</A></td>
+<td align="center" valign="center" width="25%"><A href="userAccount">My Account</A></td>
 
 <%} 
 else {
 %>
-<td align="center" valign="center" width="25%"><A href="home">Home</A></td>
-<td align="center" valign="center" width="25%"><A href="logout">Login>
+<td align="center" valign="center" width="25%"><A href="login">Login>
 <td align="center" valign="center" width="25%"><A href="register">Register</A></td>
-<td align="center" valign="center" width="25%"><A href="about">About</A></td>
 
 <% 
 }
 %>	
-	
+<td align="center" valign="center" width="25%"><A href="about">About</A></td>	
 
 
 
