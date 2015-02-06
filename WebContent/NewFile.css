@@ -46,7 +46,7 @@ h2 {
 	font-size:12px;
 	text-transform:uppercase;
 	font-weight:bold;
-	background:#fff url(images/dolphin_bg.gif) repeat-x bottom left;
+	background:silver;
 	padding:0 0 0 20px;
 }
 
@@ -157,15 +157,6 @@ a:active {
  
 /************************* ID's *************************/
  
-#navigation {
-   position: absolute;
-   width: 210px;
-   height: 600px;
-   margin: 0;
-   margin-top: 50px;
-   border-right: 1px solid #C6EC8C;
-   font-weight: normal;
-}
  
 #centerDoc {
    position: absolute;
@@ -173,3 +164,9 @@ a:active {
    margin-top: 50px;
    margin-left: 235px;
 }
+
+#botDoc{
+	 position: fixed; bottom: 20px; left: 20px; 
+	 }
+
+

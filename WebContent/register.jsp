@@ -1,3 +1,5 @@
+<jsp:include page="/header.jsp"/>
+
 <DIV align="left">
 <H2>Please type in your details:</H2>
 
@@ -32,3 +34,7 @@
 </DIV>
 
 <BR><BR><BR>
+
+<div id= botDoc>
+<jsp:include page="/footer.jsp"/>
+</div>
