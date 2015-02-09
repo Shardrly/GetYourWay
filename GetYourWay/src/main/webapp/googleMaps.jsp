@@ -7,14 +7,19 @@
 <title>Result</title>
 </head>
 <body>
+
+<h1><%=request.getParameter("origin") %></h1>
+
+<h2>HEllO1</h2>
+
 <iframe
   width="600"
   height="450"
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyB4kK5wx-R7XlUE1PjWi41biiUafnvmIcg
-    &origin=<%=request.getParameter("origin") %>
-    &destination=<%=request.getParameter("destination") %>
-    &mode=transit">
+     &origin=Cheltenham
+     &destination=London
+     &mode=transit">
 </iframe>
 </body>
 </html>
