@@ -11,16 +11,37 @@
 
 
 
+<!-- 	<authentication-manager> -->
+<!-- 		<authentication-provider> -->
+<!-- 			<user-service> -->
+<!-- 				<user name="roberto" password="roberto1" authorities="ROLE_USER" /> -->
+<!-- 			</user-service> -->
+<!-- 		</authentication-provider> -->
+<!-- 	</authentication-manager> -->
+
+	<b:bean id="saltSource"
+    	class="org.springframework.security.authentication.dao.ReflectionSaltSource"
+    	p:userPropertyToUse="username" />
+	
+	<b:bean class="com.qa.security.MongoUserService" id="loginService"/>
+	
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="roberto" password="roberto1" authorities="ROLE_USER" />
-			</user-service>
+		<authentication-provider user-service-ref="loginService"  >
+			<password-encoder hash="sha">
+				<salt-source user-property="username"/>
+			</password-encoder>
 		</authentication-provider>
 	</authentication-manager>
+	
+	
 
 	<http auto-config="true">
-	</http>
-
+      	<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <form-login login-page="/login.jsp"  />
+        <intercept-url pattern="/*.spr" access="ROLE_USER"/>
+ 
+    </http>
+    
+    
 
 </b:beans>

@@ -5,19 +5,20 @@
 
 <H2>Please type in your username and password:</H2>
 
-<FORM method="post" action="trylogin">
+<FORM method="POST" action="j_spring_security_check">
 <TABLE border="0" align="left" >
 <TR>
 <TD width="100" align="right"><B>Username: </B></TD>
-<TD><INPUT type="text" name="username"></TD>
+<TD><INPUT type="text" name="j_username"></TD>
 </TR>
 <TR>
 <TD width="100" align="right"><B>Password: </B></TD>
-<TD><INPUT type="password" name="password"></TD>
+<TD><INPUT type="password" name="j_password"></TD>
+<TD><i>Password may only contain alpha-numeric characters, and must be between 6 and 20 characters in length.</i></TD>
 </TR>
 </TR>
 <TR>
-<TD><INPUT type="submit" value="LOGIN"></TD><TD></TD>
+<TD><INPUT type="submit" value="LOGIN" name="submit"></TD><TD></TD>
 </TR>
 
 </TABLE>

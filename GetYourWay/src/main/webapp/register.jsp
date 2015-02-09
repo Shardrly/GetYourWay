@@ -3,23 +3,16 @@
 <DIV align="left">
 <H2>Please type in your details:</H2>
 
-<FORM method="get" action="registerdetails">
+<FORM method="POST" action="registerdetails.spr">
 <TABLE border="0">
 <TR>
-<TD width="100" align="right"><B>Name: </B></TD>
-<TD><INPUT type="text" name="fullname"></TD>
-</TR>
-<TR>
-<TD width="100" align="right"><B>Username: </B></TD>
+<TD width="100" align="right"><B>Email Address: </B></TD>
 <TD><INPUT type="text" name="username"></TD>
 </TR>
 <TR>
-<TD width="100" align="right"><B>Age: </B></TD>
-<TD><INPUT type="text" name="age"></TD>
-</TR>
-<TR>
-<TD width="100" align="right"><B>Email: </B></TD>
-<TD><INPUT type="text" name="email"></TD>
+<TD width="100" align="right"><B>Password: </B></TD>
+<TD><INPUT type="password" name="password"></TD>
+<TD><i>Password may only contain alpha-numeric characters, and must be between 6 and 20 characters in length.</i></TD>
 </TR>
 </TABLE>
 <BR><BR>
