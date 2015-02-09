@@ -13,15 +13,18 @@
 
 <h2>HEllO1</h2>
 
-<iframe
-  width="600"
-  height="450"
-  frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyB4kK5wx-R7XlUE1PjWi41biiUafnvmIcg
-     &origin=Cheltenham
-     &destination=London
-     &mode=transit">
-</iframe>
+  <iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key= 	
+AIzaSyB8uTIAaS-c7U9OxU8_HOut1uyfsbd1l0E
+      &q=Butchart+Gardens+Victoria+BC
+      &attribution_source=Google+Maps+Embed+API
+      &attribution_web_url=http://www.butchartgardens.com/
+      &attribution_ios_deep_link_id=comgooglemaps://?daddr=Butchart+Gardens+Victoria+BC">
+  </iframe>
+
 <div id= botDoc>
 <jsp:include page="/footer.jsp"/>
 </div>
