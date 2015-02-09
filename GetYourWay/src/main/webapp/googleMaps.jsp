@@ -18,10 +18,10 @@
     &destination=<%=request.getParameter("destination") %>
     &mode=transit">
 </iframe>
+<div id= botDoc>
+<jsp:include page="/footer.jsp"/>
+</div>
 </body>
 </html>
 
 
-<div id= botDoc>
-<jsp:include page="/footer.jsp"/>
-</div>
