@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+<display-name>GetYourWay</display-name>
+ 
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/Congo-servlet.xml,/WEB-INF/appServlet-servlet.xml</param-value>
   </context-param>
+  <context-param>
+		<description>webmaster's e-mail address</description>
+		<param-name>email</param-name>
+		<param-value>administrator@www.GetYourWay.com</param-value>
+ </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
@@ -31,4 +39,9 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  
+<welcome-file-list>
+		<welcome-file>Frontpage.html</welcome-file>
+	</welcome-file-list>
 </web-app>
