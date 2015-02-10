@@ -1,7 +1,7 @@
 /**
  * 
  */
-alert("Hello 1");
+alert("Mapping");
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
