@@ -18,21 +18,24 @@ public class MongoUserDetails implements UserDetails {
 	private List<String> authorities;
 	
 	
-
-	public MongoUserDetails(String username, String password,
-			List<String> authorities) {
+	public MongoUserDetails() {
+		
 		super();
-		this.username = username;
-		this.password = password;
-		this.authorities = authorities;
-	}
-
-	public MongoUserDetails(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
+		this.username="uname";
+		this.password="password";
 		this.authorities = new ArrayList<String>();
 		this.authorities.add("ROLE_USER");
+	}
+	public MongoUserDetails(String username, String password) {
+		this();
+		this.username = username;
+		this.password = password;
+	}
+	
+	public MongoUserDetails(String username, String password,
+			List<String> authorities) {
+		this(username,password);
+		this.authorities = authorities;
 	}
 
 	public void setAuthorities(List<String> authorities) {
