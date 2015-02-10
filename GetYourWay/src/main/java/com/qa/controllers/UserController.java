@@ -29,10 +29,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/registerdetails.spr")
-	public String newUser(@RequestParam String username, @RequestParam String password) {
+	public String newUser(@RequestParam String j_username, @RequestParam String j_password) {
 		System.out.println("Hello");
 		
-		mongoUserService.addNewUser(username, password);
+		mongoUserService.addNewUser(j_username, j_password);
 		
 		return "about";
 		
