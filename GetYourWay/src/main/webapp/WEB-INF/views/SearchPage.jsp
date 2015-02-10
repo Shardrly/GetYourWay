@@ -8,7 +8,7 @@
 <h1>Enter your Search</h1>
 <div>
 Please enter the day ranges of the Festival that interest you:
-<form action="googleMaps.jsp" method="POST">
+<form action="googleStuff.js" method="POST">
 <br>
 Origin:
 <input type="TEXT" size="10" name="origin">
