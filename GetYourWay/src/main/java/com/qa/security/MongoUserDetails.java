@@ -1,7 +1,10 @@
 package com.qa.security;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,6 +19,9 @@ public class MongoUserDetails implements UserDetails {
 	private String password;
 	private boolean enabled;
 	private List<String> authorities;
+	private boolean accountNonExpired;
+	private long expiryDate;
+	private long joinedDate;
 	
 	
 	public MongoUserDetails() {
@@ -25,6 +31,10 @@ public class MongoUserDetails implements UserDetails {
 		this.password="password";
 		this.authorities = new ArrayList<String>();
 		this.authorities.add("ROLE_USER");
+		this.accountNonExpired=true;
+		this.joinedDate = new Date().getTime();
+		this.expiryDate = this.joinedDate;
+		this.enabled = true;
 	}
 	public MongoUserDetails(String username, String password) {
 		this();
@@ -37,9 +47,29 @@ public class MongoUserDetails implements UserDetails {
 		this(username,password);
 		this.authorities = authorities;
 	}
+	
+public MongoUserDetails(String username, String password, long expiryDate, long dateJoined) {
+		
+		this(username,password);
+		this.expiryDate = expiryDate;
+		this.joinedDate = dateJoined;
+		if (new Date().getTime() > this.expiryDate) {
+			this.accountNonExpired=false;
+		}
+	}
+	
+	public MongoUserDetails(String username, String password, long expiryDate, long dateJoined, List<String> authorities) {
+		
+		this(username,password,expiryDate,dateJoined);
+		setAuthorities(authorities);
+	}
 
 	public void setAuthorities(List<String> authorities) {
 		this.authorities = authorities;
+	}
+	
+	public void setExpiryDate(long expiryDateMs) {
+		this.expiryDate = expiryDateMs;
 	}
 
 	public void setUsername(String username) {
@@ -73,10 +103,14 @@ public class MongoUserDetails implements UserDetails {
 	public String getUsername() {
 		return username;
 	}
+	
+	public long getExpiryDate() {
+		return expiryDate;
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return true;
+		return accountNonExpired;
 	}
 
 	@Override
@@ -91,10 +125,8 @@ public class MongoUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return enabled;
 	}
-	
-	
 	
 	@Override
 	public String toString() {
