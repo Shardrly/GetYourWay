@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns:b="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+
+<!-- 	<authentication-manager> -->
+<!-- 		<authentication-provider> -->
+<!-- 			<user-service> -->
+<!-- 				<user name="roberto" password="roberto1" authorities="ROLE_USER" /> -->
+<!-- 			</user-service> -->
+<!-- 		</authentication-provider> -->
+<!-- 	</authentication-manager> -->
+
+	<b:bean id="saltSource"
+    	class="org.springframework.security.authentication.dao.ReflectionSaltSource"
+    	p:userPropertyToUse="username" />
+	
+	<b:bean class="com.qa.userAccounts.MongoUserService" id="loginService"/>
+	
+	<authentication-manager>
+		<authentication-provider user-service-ref="loginService"  >
+			<password-encoder hash="sha">
+				<salt-source user-property="username"/>
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+	
+	
+
+	<http auto-config="true">
+      	<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+      	<intercept-url pattern="/*.js" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <form-login login-page="/login.jsp"  />
+        <intercept-url pattern="/*.spr" access="ROLE_USER"/>
+ 
+    </http>
+    
+    
+
+</b:beans>
