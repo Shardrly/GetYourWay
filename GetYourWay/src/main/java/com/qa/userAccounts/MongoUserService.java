@@ -1,4 +1,4 @@
-package com.qa.security;
+package com.qa.userAccounts;
 
 
 
@@ -16,17 +16,21 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.qa.exceptions.GYWSecFormatException;
+import com.qa.paymentPlans.PaymentPlan;
+import com.qa.paymentPlans.PaymentPlanService;
 
 @Service
 @SuppressWarnings({ "deprecation" })
 public class MongoUserService implements UserDetailsService
 {
     private MongoTemplate mongoTemplate;
+    private PaymentPlanService paymentPlanService;
  
     @Autowired
-    public MongoUserService( MongoTemplate mongoTemplate )
+    public MongoUserService( MongoTemplate mongoTemplate, PaymentPlanService paymentPlanService )
     {
         this.mongoTemplate = mongoTemplate;
+        this.paymentPlanService = paymentPlanService;
     }
  
     @Override
@@ -67,26 +71,25 @@ public class MongoUserService implements UserDetailsService
     	}
     }
     
-    public void addNewPlan(MongoUserDetails user, long planLength) throws GYWSecFormatException {
+    public void addNewPlan(MongoUserDetails user, String plan) throws Exception {
     	
-    	if (planLength >0) {
+		PaymentPlan pPlan = paymentPlanService.getPaymentPlanByName(plan);
+	
+    	long now = new Date().getTime();
     	
-	    	long now = new Date().getTime();
-	    	
-	    	long newExpDate;
-	    	
-	    	if (now < user.getExpiryDate()) {
-	    		newExpDate = planLength + user.getExpiryDate();
-	    	} else {
-	    		newExpDate = planLength + now;
-	    	}
-	    	
-	    	user.setExpiryDate(newExpDate);
-	    	mongoTemplate.save(user,"users");
+    	long planLength = pPlan.getLength()*60*60*1000;
+    	
+    	long newExpDate;
+    	
+    	if (now < user.getExpiryDate()) {
+    		newExpDate = planLength + user.getExpiryDate();
     	} else {
-    		throw new GYWSecFormatException("Invalid Plan Length");
+    		newExpDate = planLength + now;
     	}
-	        
+    	
+    	user.setExpiryDate(newExpDate);
+    	mongoTemplate.save(user,"users");
+        
     }
      
 }

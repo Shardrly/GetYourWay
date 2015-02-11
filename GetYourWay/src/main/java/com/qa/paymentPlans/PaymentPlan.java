@@ -1,5 +1,8 @@
-package com.qa.jsonHandling;
+package com.qa.paymentPlans;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="paymentPlans")
 public class PaymentPlan {
 	
 	private String name;

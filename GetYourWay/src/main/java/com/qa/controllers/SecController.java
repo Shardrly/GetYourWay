@@ -1,4 +1,4 @@
-package com.qa.security;
+package com.qa.controllers;
 
 public class SecController {
 

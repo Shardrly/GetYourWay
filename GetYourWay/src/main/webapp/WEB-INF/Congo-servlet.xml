@@ -20,5 +20,6 @@
 		<constructor-arg ref="factory" name="mongoDbFactory" />
 	</bean>
 
+	<bean class="com.qa.paymentPlans.PaymentPlanService" id="paymentPlanService"/>
 
 </beans>

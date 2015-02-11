@@ -7,19 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.qa.security.MongoUserDetails;
-import com.qa.security.MongoUserService;
+import com.qa.exceptions.GYWSecFormatException;
+import com.qa.paymentPlans.PaymentPlanService;
+import com.qa.userAccounts.MongoUserDetails;
+import com.qa.userAccounts.MongoUserService;
 
 @Controller
 public class UserController {
 	
 	MongoUserService mongoUserService;
+	PaymentPlanService paymentPlanService;
 	
 	@Autowired
-    public UserController( MongoUserService mongoUserService )
+    public UserController( MongoUserService mongoUserService, PaymentPlanService paymentPlayService )
     {
 		System.out.println("controller_init");
         this.mongoUserService = mongoUserService;
+        this.paymentPlanService = paymentPlayService;
     }
 	
 	@RequestMapping(value="/SearchPage.spr", method=RequestMethod.GET)
@@ -31,22 +35,26 @@ public class UserController {
 	
 	@RequestMapping(value="/registerdetails.spr")
 	public String newUser(@RequestParam String j_username, @RequestParam String j_password) {
-		
-		mongoUserService.addNewUser(j_username, j_password);
-		
-		return "/choosePlan";
+		try {
+			mongoUserService.addNewUser(j_username, j_password);
+			
+			return "/choosePlan";
+		} catch (GYWSecFormatException e) {
+			return "/register";
+		}
 		
 	}
 	
 	@RequestMapping(value="/registerplan.spr")
 	public String newPlan(@AuthenticationPrincipal MongoUserDetails activeUser, @RequestParam String plan) {
 		
+		try {
+			mongoUserService.addNewPlan(activeUser, plan);
 		
-		long planLength = new Long(plan);
-		
-		mongoUserService.addNewPlan(activeUser, planLength);
-		
-		return "/about";
+			return "/about";
+		} catch (Exception e) {
+			return "/choosePlan";
+		}
 		
 	}
 
