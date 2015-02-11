@@ -39,6 +39,9 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <error-page>
+    <location>/general-error.jsp</location>
+</error-page>
   
   
 <welcome-file-list>
