@@ -20,4 +20,9 @@ public class ArrivalAirport extends DepartureAirport{
 		return super.getStateCode();
 	}
 	
+	@Override
+	public String getCountryCode() {
+		return super.getCountryCode();
+	}
+	
 }

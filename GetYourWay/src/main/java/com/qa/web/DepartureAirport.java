@@ -9,6 +9,7 @@ public class DepartureAirport {
     private String weatherZone;
     private String countryName;
     private String stateCode;
+    private String countryCode;
     
 	public String getName() {
 		return name;
@@ -21,6 +22,9 @@ public class DepartureAirport {
 	}
 	public String getStateCode() {
 		return stateCode;
+	}
+	public String getCountryCode() {
+		return countryCode;
 	}
      
 }

@@ -22,7 +22,6 @@ public class Flights {
 	private ArrivalAirport arrivalAirport = new ArrivalAirport();
 	private String journeyTime;
 
-	
 	public String getFlightNumber() {
 		return flightNumber;
 	}
@@ -121,20 +120,17 @@ public class Flights {
 			 diffHours = diff / (60 * 60 * 1000) % 24;
 			 diffDays = diff / (24 * 60 * 60 * 1000);
  
-//			System.out.print(diffDays + " days, ");
-//			System.out.print(diffHours + " hours, ");
-//			System.out.print(diffMinutes + " minutes, ");
-//			System.out.print(diffSeconds + " seconds.");
-// 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if (diffDays <1) {
-			return diffHours+" Hours and "+diffMinutes+" Minutes";
+			journeyTime= diffHours+" Hours and "+diffMinutes+" Minutes";
+			return journeyTime;
 		}
 		
 		else{
-			return ""+diffDays+" Days, "+diffHours+" Hours and "+diffMinutes+" Minutes";
+			journeyTime= ""+diffDays+" Days, "+diffHours+" Hours and "+diffMinutes+" Minutes";
+			return journeyTime;
 		}
 		
 	}
