@@ -168,6 +168,14 @@ a:active {
 #botDoc{
 	 position: fixed; bottom: 20px; left: 20px; 
 	 }
+	 
+#passwordText{
+	font-style: italic;
+}
+
+#usernameText{
+	font-style: italic;
+}
 
 
 

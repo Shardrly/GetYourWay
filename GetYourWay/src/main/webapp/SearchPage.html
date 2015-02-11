@@ -11,17 +11,18 @@
  
  <ul class="dolphinnav">
   <li><a href="Frontpage.html" title="" class="current"><span>Home</span></a>
-  <li><a href="register.jsp" title="" class="current"><span>Register</span></a></li>
+  <li><a href="/WEB-INF/views/register.jsp" title="" class="current"><span>Register</span></a></li>
   <li><a href="login.jsp" title="" class="current"><span>Login</span></a></li>
   <li><a href="about.jsp" title="" class="current"><span>About Us</span></a></li>
- 
+   <li><a href="Feedback.jsp" title="Feedback" class="current">Feedback</a></li>
+   <li><a href="choosePlan.spr" title="ChoosePlan" class="current">Choose Plan</a></li>
  	</ul>
- </div>
-</div>
+ 	</div>
+ 	</div>
 <h1>Enter your Search</h1>
 <div>
 Please enter your search parameters:
-<form>
+<form action="drivingResults.html" method="POST">
 <br>
 Origin:
 <input type="TEXT" size="10" name="origin">
@@ -29,9 +30,9 @@ Origin:
 Destination:
 <input type="TEXT" name="destination">
 <br>
-<select id="selectbox" name="" onchange="javascript:location.href = this.value;">
-<option value="Flights.java">Flight</option>
-<option value="drivingResults.html">Driving</option>
+<select>
+<option value="flight">Flight</option>
+<option value="driving">Driving</option>
 </select>
 <br>
 
