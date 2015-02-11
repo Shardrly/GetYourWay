@@ -13,15 +13,13 @@
 
 <h2>HEllO1</h2>
 
-<iframe
-  width="600"
-  height="450"
-  frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyB4kK5wx-R7XlUE1PjWi41biiUafnvmIcg
-     &origin=Cheltenham
-     &destination=London
-     &mode=transit">
-</iframe>
+  <iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="">
+  </iframe>
+
 <div id= botDoc>
 <jsp:include page="/footer.jsp"/>
 </div>
