@@ -23,7 +23,7 @@
     	class="org.springframework.security.authentication.dao.ReflectionSaltSource"
     	p:userPropertyToUse="username" />
 	
-	<b:bean class="com.qa.userAccounts.MongoUserService" id="loginService"/>
+	<b:bean class="com.qa.userAccounts.MongoUserService" id="loginService" />
 	
 	<authentication-manager>
 		<authentication-provider user-service-ref="loginService"  >
@@ -32,6 +32,16 @@
 			</password-encoder>
 		</authentication-provider>
 	</authentication-manager>
+	
+	<b:bean id="securityExceptionTranslationHandler" class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
+	
+    	<b:property name="exceptionMappings">
+        	<b:props>
+            	<b:prop key="org.springframework.security.authentication.AccountExpiredException">/choosePlan.spr</b:prop>
+        	</b:props>
+    	</b:property>
+    	<b:property name="defaultFailureUrl" value="/login_generic_error_page"/>
+	</b:bean>
 	
 	
 

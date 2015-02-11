@@ -46,7 +46,11 @@ public class MongoUserService implements UserDetailsService
 	        	System.out.println("Could not find user");
 	            throw new UsernameNotFoundException( "Oops!" );
 	        }
-	 
+	        
+	        if (!user.isAccountNonExpired()) {
+	        	mongoTemplate.save(user);
+	        }
+	        	 
 	        return user;
 	       
     	} else {
