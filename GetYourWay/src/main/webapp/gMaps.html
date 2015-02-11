@@ -8,11 +8,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  xmlns:v="urn:schemas-microsoft-com:vml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Google Maps Directions</title>
+    <title>Google Maps</title>
     <script src=" http://maps.google.com/?file=api&amp;v=2&amp;key=AIzaSyB8uTIAaS-c7U9OxU8_HOut1uyfsbd1l0E"
       type="text/javascript"></script>
-    <style type="text/css">
-      body {
+     
+    <style>
+        body {
         font-family: Verdana, Arial, sans serif;
         font-size: 11px;
         margin: 2px;
@@ -23,7 +24,10 @@
       img {
         color: #000000;
       }
-    </style>
+     </style>
+
+
+
     <script type="text/javascript">
  
     var map;
@@ -32,13 +36,14 @@
     var addressMarker;
 
     function initialize() {
+    	
       if (GBrowserIsCompatible()) {      
         map = new GMap2(document.getElementById("map_canvas"));
         gdir = new GDirections(map, document.getElementById("directions"));
         GEvent.addListener(gdir, "addoverlay", onGDirectionsLoad);
         GEvent.addListener(gdir, "error", handleErrors);
 
-        setDirections("", "", "en_UK");
+        setDirections("Cheltenham", "London", "en_UK");
       }
     }
     
@@ -57,7 +62,7 @@
    else if (gdir.getStatus().code == G_GEO_BAD_KEY)
      alert("The given key is either invalid or does not match the domain for which it was given. \n Error code: " + gdir.getStatus().code);
    else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
-   	 alert("A directions request could not be successfully parsed.\n Error code: " + gdir.getStatus().code);
+     alert("A directions request could not be successfully parsed.\n Error code: " + gdir.getStatus().code);
    else alert("An unknown error occurred.");
     }
 
@@ -100,6 +105,7 @@
    extraParams.push("center=" + poly.getVertex(poly.getVertexCount()-1).toUrlValue(5));
    extraParams.push("zoom=" + 15);
    addImg(baseUrl + "&" + extraParams.join("&"), "staticMapEndIMG");
+   
 }
 
 function addImg(url, id) {
@@ -108,13 +114,20 @@ function addImg(url, id) {
  document.getElementById(id).innerHTML = "";
  document.getElementById(id).appendChild(img);
 }
+function initialize0(){
+	
+	initialize();
+	initialize2();
+}
 
     </script>
 
   </head>
-  <body onload="initialize()" onunload="GUnload()">
+  <body onload="initialize0()" onunload="GUnload()">
+  
   
   <h2>Google Maps</h2>
+  <div style="width:700px; height:500px; margin-left:80px;">
   <form action="#" onsubmit="setDirections(this.from.value, this.to.value, this.locale.value); return false">
 
   <table>
@@ -145,7 +158,7 @@ function addImg(url, id) {
     
   </form>
 
-    <br/>
+  
     <table class="directions">
     <tr><th>Formatted Directions</th><th>Map</th></tr>
 
@@ -155,14 +168,11 @@ function addImg(url, id) {
 
     </tr>
     </table> 
+    </div>
+   
+ 
 
-<hr>
-Static Maps (printable) version:
+ 
 
- <div id="staticMapOverviewIMG"></div>
- <div id="staticMapStartIMG"></div>
- <div id="staticMapEndIMG"></div>
-<br clear="all"/>
-
-  </body>
+	</body>
 </html>
