@@ -1,5 +1,7 @@
 package com.qa.paymentPlans;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -31,5 +33,10 @@ public class PaymentPlanService {
     		throw new Exception("Bad payment plan");
     	}
     }
+	
+	public List<PaymentPlan> getAllPaymentPlans() {
+		return mongoTemplate.find(Query.query(Criteria.where("name").exists(true)), PaymentPlan.class);				
+		
+	}
 
 }

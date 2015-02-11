@@ -43,12 +43,14 @@ public class MongoUserService implements UserDetailsService
 	        UserDetails user = mongoTemplate.findOne(Query.query(Criteria.where("username").is(username)), MongoUserDetails.class);
 			
 	        if( user == null ) {
+	        	System.out.println("Could not find user");
 	            throw new UsernameNotFoundException( "Oops!" );
 	        }
 	 
 	        return user;
 	       
     	} else {
+    		System.out.println("Badly Formatted Username");
     		throw new UsernameNotFoundException("Bad username");
     	}
     }

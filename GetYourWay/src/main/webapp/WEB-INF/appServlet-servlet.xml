@@ -39,7 +39,7 @@
       	<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
       	<intercept-url pattern="/*.js" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <form-login login-page="/login.jsp"  />
-        <intercept-url pattern="/*.spr" access="ROLE_USER"/>
+        <intercept-url pattern="*/views*" access="ROLE_USER"/>
  
     </http>
     
