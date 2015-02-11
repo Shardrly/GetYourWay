@@ -17,7 +17,7 @@
 </TR>
 </TR>
 <TR>
-<TD><INPUT type="submit" value="LOGIN"></TD><TD></TD>
+<TD><INPUT type="submit" value="LOGIN" onclick="SearchPage.html"></TD><TD></TD>
 </TR>
 
 </TABLE>

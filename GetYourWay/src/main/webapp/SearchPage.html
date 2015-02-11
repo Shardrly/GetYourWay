@@ -2,20 +2,45 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="NewFile.css" rel="stylesheet" type="text/css">
 <title>Front Page</title>
 </head>
 <body>
+<div id="dolphincontainer">
+<div id="dolphinnav">
+ 
+ <ul class="dolphinnav">
+  <li><a href="Frontpage.html" title="" class="current"><span>Home</span></a>
+  <li><a href="register.jsp" title="" class="current"><span>Register</span></a></li>
+  <li><a href="login.jsp" title="" class="current"><span>Login</span></a></li>
+  <li><a href="about.jsp" title="" class="current"><span>About Us</span></a></li>
+ 
+ 	</ul>
+ </div>
+</div>
 <h1>Enter your Search</h1>
 <div>
 Please enter your search parameters:
-<form action="gMaps.html" method="POST">
+
 <br>
 Origin:
 <input type="TEXT" size="10" name="origin">
 <br>
 Destination:
 <input type="TEXT" name="destination">
+<br>
+<select id="selectbox" name="" onchange="javascript:location.href = this.value;">
+<option value="Flights.java">Flight</option>
+<option value="drivingResults.html">Driving</option>
+</select>
+<br>
+
 <input type="SUBMIT" value="Submit">
+<script type="text/javascript">
+    window.onload = function(){
+        location.href=document.getElementById("selectbox").value;
+    }       
+</script>
 </form>
 </div>
 </body>
