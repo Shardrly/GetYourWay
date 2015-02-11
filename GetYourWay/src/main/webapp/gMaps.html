@@ -1,16 +1,51 @@
- var map;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+ Copyright 2008 Google Inc. 
+ Licensed under the Apache License, Version 2.0: 
+ http://www.apache.org/licenses/LICENSE-2.0 
+ -->
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps</title>
+    <script src=" http://maps.google.com/?file=api&amp;v=2&amp;key=AIzaSyB8uTIAaS-c7U9OxU8_HOut1uyfsbd1l0E"
+      type="text/javascript"></script>
+     
+    <style>
+        body {
+        font-family: Verdana, Arial, sans serif;
+        font-size: 11px;
+        margin: 2px;
+      }
+      table.directions th {
+        background-color:#EEEEEE;
+      }
+      img {
+        color: #000000;
+      }
+     </style>
+
+
+
+    <script type="text/javascript">
+ 
+    var map;
     var gdir;
     var geocoder = null;
     var addressMarker;
 
     function initialize() {
+    	
       if (GBrowserIsCompatible()) {      
         map = new GMap2(document.getElementById("map_canvas"));
         gdir = new GDirections(map, document.getElementById("directions"));
+        
         GEvent.addListener(gdir, "addoverlay", onGDirectionsLoad);
         GEvent.addListener(gdir, "error", handleErrors);
 
-        setDirections("", "", "en_UK");
+        setDirections("Cheltenham", "London", "en_UK");
+        
       }
     }
     
@@ -72,6 +107,7 @@
    extraParams.push("center=" + poly.getVertex(poly.getVertexCount()-1).toUrlValue(5));
    extraParams.push("zoom=" + 15);
    addImg(baseUrl + "&" + extraParams.join("&"), "staticMapEndIMG");
+   
 }
 
 function addImg(url, id) {
@@ -80,4 +116,65 @@ function addImg(url, id) {
  document.getElementById(id).innerHTML = "";
  document.getElementById(id).appendChild(img);
 }
+function initialize0(){
+	
+	initialize();
+	initialize2();
+}
 
+    </script>
+
+  </head>
+  <body onload="initialize0()" onunload="GUnload()">
+  
+  
+  <h2>Google Maps</h2>
+  <div style="width:700px; height:500px; margin-left:80px;">
+  <form action="#" onsubmit="setDirections(this.from.value, this.to.value, this.locale.value); return false">
+
+  <table>
+
+   <tr><th align="right">From:&nbsp;</th>
+
+   <td><input type="text" size="25" id="fromAddress" name="from"
+     value=""/></td>
+   <th align="right">&nbsp;&nbsp;To:&nbsp;</th>
+   <td align="right"><input type="text" size="25" id="toAddress" name="to"
+     value="" /></td></tr>
+
+   <tr><th>Language:&nbsp;</th>
+   <td colspan="3"><select id="locale" name="locale">
+
+    <option value="en" selected>English</option>
+    <option value="fr">French</option>
+
+    <option value="de">German</option>
+    <option value="ja">Japanese</option>
+    <option value="es">Spanish</option>
+    </select>
+
+    <input name="submit" type="submit" value="Get Directions!" />
+   </td></tr>
+   </table>
+
+    
+  </form>
+
+  
+    <table class="directions">
+    <tr><th>Formatted Directions</th><th>Map</th></tr>
+
+    <tr>
+    <td valign="top"><div id="directions" style="width: 275px"></div></td>
+    <td valign="top"><div id="map_canvas" style="width: 310px; height: 400px"></div></td>
+
+    </tr>
+    </table> 
+    </div>
+   
+ 
+
+ 
+
+	</body>
+</html>

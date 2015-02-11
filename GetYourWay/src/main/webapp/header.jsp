@@ -10,11 +10,12 @@
 
 <BODY>
 <body>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="dolphincontainer">
 <div id="dolphinnav">
  <ul>
-  <li><a href="Frontpage.html" title="" class="current"><span>Home</span></a></li>
-  <li><a href="register.jsp" title="" class="current"><span>Register</span></a></li>
+  <li><a href="Frontpage.jsp" title="" class="current"><span>Home</span></a></li>
+  <li><a href="registerdetails.jsp" title="" class="current"><span>Register</span></a></li>
   <li><a href="login.jsp" title="" class="current"><span>Login</span></a></li>
   <li><a href="about.jsp" title="" class="current"><span>About Us</span></a></li>
 

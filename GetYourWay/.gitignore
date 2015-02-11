@@ -1,1 +1,6 @@
-/target/
+# OS generated files #
+######################
+.settings/*
+.classpath
+*.project
+.springBeans
