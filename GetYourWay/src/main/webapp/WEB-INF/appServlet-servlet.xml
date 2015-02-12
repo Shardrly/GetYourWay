@@ -23,7 +23,7 @@
     	class="org.springframework.security.authentication.dao.ReflectionSaltSource"
     	p:userPropertyToUse="username" />
 	
-	<b:bean class="com.qa.userAccounts.MongoUserService" id="loginService"/>
+	<b:bean class="com.qa.userAccounts.MongoUserService" id="loginService" />
 	
 	<authentication-manager>
 		<authentication-provider user-service-ref="loginService"  >
@@ -33,13 +33,25 @@
 		</authentication-provider>
 	</authentication-manager>
 	
+	<b:bean id="securityExceptionTranslationHandler" class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
+	
+    	<b:property name="exceptionMappings">
+        	<b:props>
+            	<b:prop key="org.springframework.security.authentication.AccountExpiredException">/choosePlan.spr</b:prop>
+        	</b:props>
+    	</b:property>
+    	<b:property name="defaultFailureUrl" value="/login_generic_error_page"/>
+	</b:bean>
+	
 	
 
-	<http auto-config="true">
-      	<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-      	<intercept-url pattern="/*.js" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+	<http auto-config="true" use-expressions="true">
+      	<intercept-url pattern="/login.jsp" access="permitAll"/>
+      	<intercept-url pattern="/*.js" access="permitAll"/>
         <form-login login-page="/login.jsp"  />
-        <intercept-url pattern="*/views*" access="ROLE_USER"/>
+        <intercept-url pattern="/welcome*" access="hasRole('user')" />
+		<logout logout-success-url="/logoutSuccess.jsp" />
+        <intercept-url pattern="*/views*" access="hasRole('user')"/>
  
     </http>
     

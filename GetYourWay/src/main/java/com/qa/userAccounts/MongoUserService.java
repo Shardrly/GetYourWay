@@ -41,12 +41,16 @@ public class MongoUserService implements UserDetailsService
     	if (username.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$")) {
     			
 	        UserDetails user = mongoTemplate.findOne(Query.query(Criteria.where("username").is(username)), MongoUserDetails.class);
-			
+	        
 	        if( user == null ) {
 	        	System.out.println("Could not find user");
 	            throw new UsernameNotFoundException( "Oops!" );
 	        }
-	 
+	        
+	        if (!user.isAccountNonExpired()) {
+	        	mongoTemplate.save(user);
+	        }
+	        	 
 	        return user;
 	       
     	} else {
@@ -61,15 +65,18 @@ public class MongoUserService implements UserDetailsService
     	    	
     	if (username.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$")
     			&& rawPassword.matches("^[A-Z0-9a-z]{6,20}$")
-    			&& ! username.contains(rawPassword.toUpperCase())) {
+    			&& ! username.contains(rawPassword.toUpperCase())
+    			&& ! mongoTemplate.exists(Query.query(Criteria.where("username").is(username)), MongoUserDetails.class)) {
     	
 			PasswordEncoder encoder = new ShaPasswordEncoder();
 	    	String password = encoder.encodePassword(rawPassword, username);
 	    	
 	    	UserDetails user = new MongoUserDetails(username, password);
 	    	mongoTemplate.save(user, "users");
+    	} else if (mongoTemplate.exists(Query.query(Criteria.where("username").is(username)), MongoUserDetails.class)) {
+    		throw new GYWSecFormatException("This username already exists");
     	} else {
-    		throw new GYWSecFormatException("Invalid password/username");
+    		throw new GYWSecFormatException("Bad password / username");
     	}
     }
     

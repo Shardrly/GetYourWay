@@ -37,17 +37,15 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/registerdetails.spr")
+	@RequestMapping(value="/registerdetails.spr*")
 	public String newUser(@RequestParam String j_username, @RequestParam String j_password) {
 		try {
 			mongoUserService.addNewUser(j_username, j_password);
 			System.out.println("Registration Succesful");
 			
-			
-			
-			return "/choosePlan.spr";
+			return "/choosePlan";
 		} catch (GYWSecFormatException e) {
-			return "/register";
+			return "/registerdetails.spr";
 		}
 	}
 	
@@ -58,7 +56,7 @@ public class UserController {
 		return new ModelAndView("/choosePlan","PlanList",planList);
 	}
 	
-	@RequestMapping(value="/registerplan.spr")
+	@RequestMapping(value="/registerplan.spr*")
 	public String newPlan(@AuthenticationPrincipal MongoUserDetails activeUser, @RequestParam String planType) {
 		
 		try {

@@ -53,9 +53,7 @@ public MongoUserDetails(String username, String password, long expiryDate, long 
 		this(username,password);
 		this.expiryDate = expiryDate;
 		this.joinedDate = dateJoined;
-		if (new Date().getTime() > this.expiryDate) {
-			this.accountNonExpired=false;
-		}
+		checkAccountExpired();
 	}
 	
 	public MongoUserDetails(String username, String password, long expiryDate, long dateJoined, List<String> authorities) {
@@ -70,6 +68,7 @@ public MongoUserDetails(String username, String password, long expiryDate, long 
 	
 	public void setExpiryDate(long expiryDateMs) {
 		this.expiryDate = expiryDateMs;
+		checkAccountExpired();
 	}
 
 	public void setUsername(String username) {
@@ -82,6 +81,12 @@ public MongoUserDetails(String username, String password, long expiryDate, long 
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	public void checkAccountExpired() {
+		if (new Date().getTime() > this.expiryDate) {
+			this.accountNonExpired=false;
+		}
 	}
 
 	@Override
