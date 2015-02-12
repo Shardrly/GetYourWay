@@ -101,10 +101,10 @@
 		<p>
 			Date: <input type="text" id="datepicker" required name="date">
 		</p>
-		<input type="hidden" id="originlat" /> 
-		<input type="hidden" id="originlong" /> 
-		<input type="hidden" id="destlat" />
-		<input type="hidden" id="destlong" /> 
+		<input type="hidden" id="originlat" name="originlat"/> 
+		<input type="hidden" id="originlong" name="originlong"/> 
+		<input type="hidden" id="destlat" name="destlat"/>
+		<input type="hidden" id="destlong" name="destlong"/> 
 		Submit search <input type="submit"value="Submit" />
 		<select  name="mode">
 		<option value="Flights">Flight</option>
