@@ -49,7 +49,7 @@ public class MongoUserService implements UserDetailsService {
 			if (!user.isAccountNonExpired()) {
 				mongoTemplate.save(user);
 			}
-
+			System.out.println("Logged in " + user.getUsername());
 			return user;
 
 		} else {
@@ -84,7 +84,11 @@ public class MongoUserService implements UserDetailsService {
 		}
 	}
 
-	public void addNewPlan(MongoUserDetails user, String plan) throws Exception {
+	public void addNewPlan(String username, String plan) throws Exception {
+		
+		MongoUserDetails user = (MongoUserDetails)loadUserByUsername(username);
+		
+		System.out.println(user.getUsername());
 
 		PaymentPlan pPlan = paymentPlanService.getPaymentPlanByName(plan);
 
@@ -105,10 +109,13 @@ public class MongoUserService implements UserDetailsService {
 
 	}
 
-	public boolean checkUserInDate(MongoUserDetails user) {
+	public boolean checkUserInDate(String username) {
+		
+		MongoUserDetails user = (MongoUserDetails)loadUserByUsername(username);
 
 		user.checkAccountExpired();
 		mongoTemplate.save(user, "users");
+		System.out.println("Today: " + new Date() + " Expriy Date: " + new Date(user.getExpiryDate()));
 		
 		return user.isAccountNonExpired();
 	}

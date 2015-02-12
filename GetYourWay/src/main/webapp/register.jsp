@@ -9,7 +9,7 @@
 <TABLE border="0">
 <TR>
 <TD width="100" align="right"><B>Email Address: </B></TD>
-<TD><INPUT type="text" name="j_username"  onChange="usernameCheck()"></TD>
+<TD><INPUT type="text" name="j_username"  onChange="usernameCheck(this.form)"></TD>
 <TD><div id="usernameText"></div></TD>
 </TR>
 <TR>
