@@ -38,7 +38,7 @@ public class UserController {
 			mongoUserService.addNewUser(j_username, j_password);
 			System.out.println("Registration Succesful");
 			
-			return "/choosePlan.spr";
+			return "/Search.uspr";
 		} catch (GYWSecFormatException e) {
 			System.out.println(e.getMessage());
 			return "/register.spr";
