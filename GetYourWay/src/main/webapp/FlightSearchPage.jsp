@@ -85,7 +85,7 @@
 	</script>
 
 
-	<style>
+<style>
 .push-down {
 	margin-top: 25px;
 }
@@ -94,7 +94,7 @@
 
 <body>
 <body onload="myIP()">
-	<form method="post" action="flightResults.jsp">
+	<form method="post" action="SearchResults.uspr">
 		Origin: <input id="origin" type="TEXT" name="origin" required>
 		<br> Destination: <input id="dest" type="TEXT" name="destination"
 			required>
