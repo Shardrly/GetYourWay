@@ -44,8 +44,10 @@
 								if (status == google.maps.GeocoderStatus.OK) {
 									customersearchlat[customersearchlat.length] = results[0].geometry.location
 											.lat();
+									alert(customersearchlat[customersearchlat.length]);
 									customersearchlong[customersearchlong.length] = results[0].geometry.location
 											.lng();
+									alert(customersearchlong[customersearchlong.length]);
 								} else {
 									$('.push-down').text(
 											"Something went wrong " + status);

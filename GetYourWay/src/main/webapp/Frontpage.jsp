@@ -10,10 +10,6 @@
 <a href="SearchPage.spr">Search</a>
 </p>
  
- <p>
-<a href="FlightSearchPage.jsp">Search</a>
-</p>
- 
  </div>  
    
 <HR><BR><BR><BR><BR><BR><BR><BR><BR>
