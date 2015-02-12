@@ -11,6 +11,12 @@ import com.qa.web.ScheduledFlights;
 import com.qa.web.TimeTest;
 
 public class FlightsSearch {
+	private static String origincode;
+	private static String destcode;
+	private static String year;
+	private static String month;
+	private static String day;
+	
 	
 	   public static void main(String args[]) {
 	    	
@@ -23,11 +29,6 @@ public class FlightsSearch {
 		   
 		String baseSearch = "https://api.flightstats.com/flex/schedules/rest/v1/json/from/";
 		String FlightsQuery =null;
-		String origincode = null;
-		String destcode = null;
-		String year = null;
-		String month = null;
-		String day = null;
 		String appId = "appId=208593e7&";
 		String appKey = "appKey=24ff9976068fc000c241363fd8434a17";
 

@@ -106,6 +106,10 @@
 		<input type="hidden" id="destlat" />
 		<input type="hidden" id="destlong" /> 
 		Submit search <input type="submit"value="Submit" />
+		<select  name="mode">
+		<option value="Flights">Flight</option>
+		<option value="DrivingResults">Driving</option>
+		</select>
 	</form>
 
 

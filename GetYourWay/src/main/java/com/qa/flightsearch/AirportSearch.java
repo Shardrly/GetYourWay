@@ -1,6 +1,26 @@
 package com.qa.flightsearch;
 
 public class AirportSearch {
+	private static Double originlat;
+	private static Double originlong;
+	private static Double destlat;
+	private static Double destlong;
+	
+	public void setOriginlat(Double originlat) {
+		this.originlat = originlat;
+	}
+	public void setOriginlong(Double originlong) {
+		this.originlong = originlong;
+	}
+
+	public void setDestinationlat(Double destinationlat) {
+		this.destlat = destinationlat;
+	}
+
+	public void setDestinationlong(Double destinationlong) {
+		this.destlong = destinationlong;
+	}
+
 	
     public static void main(String args[]) {
     	
@@ -13,19 +33,17 @@ public class AirportSearch {
 	//					+ "appKey=24ff9976068fc000c241363fd8434a17";
 	//	
     	String baseSearch = "https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/";
-		String airportQuery;
-		Double originlat = null;
-		Double originlong =null;
-		Double destinationlat = null;
-		Double destinationlong = null;
+		String airportQueryOri;
+		String airportQueryDest;
+	
 		Integer radius = 50;
-		String originString;
-		String destString;
 		String appId= "appId=208593e7&";
 		String appKey="appKey=24ff9976068fc000c241363fd8434a17";
-		
-		originString = ""+originlat+"/"+originlong+"/";
-		destString =""+destinationlat+"/"+destinationlong+"/";
-		airportQuery=baseSearch+""+originString+radius+"?"+appId+appKey;
+	
+		String origin = ""+originlat+"/"+originlong+"/";
+		String destination =""+destlat+"/"+destlong+"/";
+		airportQueryOri=baseSearch+""+origin+radius+"?"+appId+appKey;
+		airportQueryDest=baseSearch+""+destination+radius+"?"+appId+appKey;
 		}
 }
+
