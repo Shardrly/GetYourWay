@@ -3,6 +3,8 @@ package com.qa.exceptions;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 public class GYWSecFormatException extends Exception {
 	
 	private Collection<GYWSecFormatException> problems = new ArrayList<GYWSecFormatException>();

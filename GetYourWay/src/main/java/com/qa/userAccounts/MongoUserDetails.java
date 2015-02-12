@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -53,9 +54,7 @@ public MongoUserDetails(String username, String password, long expiryDate, long 
 		this(username,password);
 		this.expiryDate = expiryDate;
 		this.joinedDate = dateJoined;
-		if (new Date().getTime() > this.expiryDate) {
-			this.accountNonExpired=false;
-		}
+		checkAccountExpired();
 	}
 	
 	public MongoUserDetails(String username, String password, long expiryDate, long dateJoined, List<String> authorities) {
@@ -70,6 +69,7 @@ public MongoUserDetails(String username, String password, long expiryDate, long 
 	
 	public void setExpiryDate(long expiryDateMs) {
 		this.expiryDate = expiryDateMs;
+		checkAccountExpired();
 	}
 
 	public void setUsername(String username) {
@@ -82,6 +82,10 @@ public MongoUserDetails(String username, String password, long expiryDate, long 
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	public void checkAccountExpired() {
+		this.accountNonExpired= (new Date().getTime() < this.expiryDate);
 	}
 
 	@Override
@@ -100,6 +104,7 @@ public MongoUserDetails(String username, String password, long expiryDate, long 
 	}
 
 	@Override
+	@Id
 	public String getUsername() {
 		return username;
 	}
