@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.qa.paymentPlans.PaymentPlanService;
 import com.qa.userAccounts.MongoUserDetails;
@@ -28,12 +27,24 @@ public class SearchController {
 	}
 
 	@RequestMapping(value = "/Search.uspr")
-	public void search(HttpServletRequest request,
+	public String search(
+			@AuthenticationPrincipal MongoUserDetails activeUser)
+			throws Exception {
+		
+		if (mongoUserService.checkUserInDate(activeUser)) {
+			return "/FlightSearchPage.jsp";
+		} else {
+			return "/choosePlan.spr";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/SearchResults.uspr")
+	public void searchResults(HttpServletRequest request,
 			HttpServletResponse response,
 			@AuthenticationPrincipal MongoUserDetails activeUser)
 			throws Exception {
 
-		if (mongoUserService.checkUserInDate(activeUser)) {
 
 			if (request.getParameter("mode").equals("DrivingResults")) {
 				RequestDispatcher rd = request.getRequestDispatcher("drivingResults.jsp");
@@ -47,10 +58,5 @@ public class SearchController {
 				throw new Exception("Bad flight mode: "
 						+ request.getParameter("mode"));
 			}
-
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("choosePlan.spr");
-			rd.forward(request, response);
-		}
 	}
 }
