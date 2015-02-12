@@ -84,9 +84,7 @@ public MongoUserDetails(String username, String password, long expiryDate, long 
 	}
 	
 	public void checkAccountExpired() {
-		if (new Date().getTime() > this.expiryDate) {
-			this.accountNonExpired=false;
-		}
+		this.accountNonExpired= (new Date().getTime() > this.expiryDate);
 	}
 
 	@Override
