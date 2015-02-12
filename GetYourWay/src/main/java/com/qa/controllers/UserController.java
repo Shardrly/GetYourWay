@@ -30,22 +30,16 @@ public class UserController {
         this.paymentPlanService = paymentPlayService;
     }
 	
-	@RequestMapping(value="/SearchPage.spr", method=RequestMethod.GET)
-	public String login() {
-		
-		return "SearchPage";
-		
-	}
-	
-	@RequestMapping(value="/registerdetails.spr*")
+	@RequestMapping(value="/registerdetails.spr")
 	public String newUser(@RequestParam String j_username, @RequestParam String j_password) {
 		try {
 			mongoUserService.addNewUser(j_username, j_password);
 			System.out.println("Registration Succesful");
 			
-			return "/choosePlan";
+			return "/choosePlan.uspr";
 		} catch (GYWSecFormatException e) {
-			return "/registerdetails.spr";
+			System.out.println(e.getMessage());
+			return "/register.jsp";
 		}
 	}
 	
@@ -53,20 +47,26 @@ public class UserController {
 	public ModelAndView choosePlan() {
 		
 		ArrayList<PaymentPlan> planList = (ArrayList<PaymentPlan>)paymentPlanService.getAllPaymentPlans();
-		return new ModelAndView("/choosePlan","PlanList",planList);
+		return new ModelAndView("/choosePlan.jsp","PlanList",planList);
 	}
 	
-	@RequestMapping(value="/registerplan.spr*")
+	@RequestMapping(value="/registerplan.spr")
 	public String newPlan(@AuthenticationPrincipal MongoUserDetails activeUser, @RequestParam String planType) {
 		
 		try {
 			mongoUserService.addNewPlan(activeUser, planType);
 		
-			return "/about";
+			return "/about.spr";
 		} catch (Exception e) {
-			return "/choosePlan";
+			System.out.println(e.getMessage());
+			return "/choosePlan.spr";
 		}
 		
+	}
+	
+	@RequestMapping(value="/logout.spr")
+	public String logout() {
+		return "logout.jsp";
 	}
 
 }
