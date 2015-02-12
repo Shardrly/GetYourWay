@@ -44,8 +44,8 @@ public class AirportSearch {
 		String appId= "appId=208593e7&";
 		String appKey="appKey=24ff9976068fc000c241363fd8434a17";
 	
-		String origin = ""+originl+"/"+originlo+"/";
-		String destination =""+destl+"/"+destlo+"/";
+		String origin = ""+originlo+"/"+originl+"/";
+		String destination =""+destlo+"/"+destl+"/";
 		
 //		String origin = ""+originlat+"/"+originlong+"/";
 //		String destination =""+destlat+"/"+destlong+"/";
