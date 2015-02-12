@@ -27,7 +27,7 @@ function HtmlEncode(s)
 <div id="dolphinnav">
  <ul>
   <li><a href="Frontpage.spr" title="" class="current"><span>Home</span></a></li>
-  <li><a href="Search.uspr" title="" class="current"><span>About Us</span></a></li>
+  <li><a href="Search.uspr" title="" class="current"><span>Search</span></a></li>
   <sec:authorize access="isAuthenticated()" var="isLoggedIn" />
   <c:if test="${isLoggedIn}">
   <li><a href="choosePlan.spr" title="" class="current"><span>Choose Payment Plan</span></a></li>

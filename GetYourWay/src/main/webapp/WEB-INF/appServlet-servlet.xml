@@ -37,7 +37,7 @@
 	
     	<b:property name="exceptionMappings">
         	<b:props>
-            	<b:prop key="org.springframework.security.authentication.AccountExpiredException">/choosePlan.spr</b:prop>
+            	<b:prop key="org.springframework.security.authentication.AccountStatusException">/choosePlan.spr</b:prop>
         	</b:props>
     	</b:property>
     	<b:property name="defaultFailureUrl" value="/login_generic_error_page.spr"/>
@@ -45,12 +45,12 @@
 	
 	
 
-	<http auto-config="true" use-expressions="true">
+	<http auto-config="true" use-expressions="true" access-denied-page="/accessDenied.spr" >
       	<intercept-url pattern="/login.jsp" access="permitAll"/>
       	<intercept-url pattern="/*.js" access="permitAll"/>
-        <form-login login-page="/login.spr"  />
+        <form-login login-page="/login.spr" default-target-url="/Search.uspr" />
 		<logout logout-success-url="/logoutSuccess.spr" />
-        <intercept-url pattern="/*.uspr" access="hasRole('user')"/>
+        <intercept-url pattern="/*.uspr" access="hasRole('ROLE_USER')"/>
  
     </http>
     

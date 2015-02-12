@@ -1,13 +1,21 @@
-<jsp:include page="/header.jsp"/>
+<html>
+<head>
 
-<div id="centerDoc">
+</head>
+<body>
+<jsp:include page="/header.jsp"/>    
+  
+  
 
-</div>
- 
-     
+
 <iframe src="weather.html" height="500px" width="700px" scrolling="no" style="overflow: hidden">
 </iframe>
+	
 
+
+
+</body>
 <div id= botDoc>
 <jsp:include page="/footer.jsp"/>
 </div>
+</html>

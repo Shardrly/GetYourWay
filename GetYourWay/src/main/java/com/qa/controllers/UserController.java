@@ -1,8 +1,10 @@
 package com.qa.controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +38,10 @@ public class UserController {
 			mongoUserService.addNewUser(j_username, j_password);
 			System.out.println("Registration Succesful");
 			
-			return "/choosePlan.uspr";
+			return "/Search.uspr";
 		} catch (GYWSecFormatException e) {
 			System.out.println(e.getMessage());
-			return "/register.jsp";
+			return "/register.spr";
 		}
 	}
 	
@@ -51,10 +53,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/registerplan.spr")
-	public String newPlan(@AuthenticationPrincipal MongoUserDetails activeUser, @RequestParam String planType) {
+	public String newPlan(@AuthenticationPrincipal Principal activeUser, @RequestParam String planType) {
+		System.out.println("Adding new plan " + planType + " to user " + activeUser.getName());
 		
 		try {
-			mongoUserService.addNewPlan(activeUser, planType);
+			mongoUserService.addNewPlan(activeUser.getName(), planType);
 		
 			return "/about.spr";
 		} catch (Exception e) {

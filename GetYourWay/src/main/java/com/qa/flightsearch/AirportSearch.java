@@ -1,10 +1,34 @@
 package com.qa.flightsearch;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class AirportSearch {
+
+//	
+//	public void setOriginlat(Double originlat) {
+//		this.originlat = originlat;
+//	}
+//	public void setOriginlong(Double originlong) {
+//		this.originlong = originlong;
+//	}
+//
+//	public void setDestinationlat(Double destinationlat) {
+//		this.destlat = destinationlat;
+//	}
+//
+//	public void setDestinationlong(Double destinationlong) {
+//		this.destlong = destinationlong;
+//	}
+
 	
-    public static void main(String args[]) {
+    public static List<String> BuildQuery(String originl, String originlo, String destl, String destlo){
     	
-	
+//    	 Double originlat=Double.parseDouble(originl);
+//    	 Double originlong=Double.parseDouble(originlo);
+//    	 Double destlat=Double.parseDouble(destl);
+//    	 Double destlong=Double.parseDouble(destlo);
 	//			curl -v  -X GET
 	//	Long			+ "-0.453/
 //    	Lat				+	51.469/
@@ -13,19 +37,25 @@ public class AirportSearch {
 	//					+ "appKey=24ff9976068fc000c241363fd8434a17";
 	//	
     	String baseSearch = "https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/";
-		String airportQuery;
-		Double originlat = null;
-		Double originlong =null;
-		Double destinationlat = null;
-		Double destinationlong = null;
+		String airportQueryOri;
+		String airportQueryDest;
+	
 		Integer radius = 50;
-		String originString;
-		String destString;
 		String appId= "appId=208593e7&";
 		String appKey="appKey=24ff9976068fc000c241363fd8434a17";
+	
+		String origin = ""+originl+"/"+originlo+"/";
+		String destination =""+destl+"/"+destlo+"/";
 		
-		originString = ""+originlat+"/"+originlong+"/";
-		destString =""+destinationlat+"/"+destinationlong+"/";
-		airportQuery=baseSearch+""+originString+radius+"?"+appId+appKey;
+//		String origin = ""+originlat+"/"+originlong+"/";
+//		String destination =""+destlat+"/"+destlong+"/";
+		airportQueryOri=baseSearch+""+origin+radius+"?"+appId+appKey;
+		airportQueryDest=baseSearch+""+destination+radius+"?"+appId+appKey;
+		List<String> airportList = new ArrayList<String>(); 
+		airportList.add(airportQueryOri);
+		airportList.add(airportQueryDest);
+	
+		return airportList;
 		}
 }
+

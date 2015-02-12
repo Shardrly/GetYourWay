@@ -14,7 +14,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 
 	<context:annotation-config />
-	<mongo:mongo host="STUDENT05" port="27017"/>
+	<mongo:mongo host="localhost" port="27017"/>
 	<mongo:db-factory dbname="test" id="factory" />
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg ref="factory" name="mongoDbFactory" />
