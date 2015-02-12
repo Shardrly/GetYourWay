@@ -51,10 +51,14 @@ public class MainController {
 		return "login_generic_error_page.jsp";
 	}
 	
-	@RequestMapping(value="/Feedback.uspr")
-	public String feedback() {
-		return "Feedback.jsp";
+	@RequestMapping(value="/register.spr")
+	public String register() {
+		return "register.jsp";
 	}
-
+	
+	@RequestMapping(value="/accessDenied.spr")
+	public String accessDenied() {
+		return "accessDenied.jsp";
+	}
 
 }

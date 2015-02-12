@@ -6,11 +6,8 @@
  
 <h1>Welcome travellers!</h1>
  
-<p>
-<a href="SearchPage.spr">Search</a>
-</p>
- 
 
+ 
  </div>  
    
 <HR><BR><BR><BR><BR><BR><BR><BR><BR>
