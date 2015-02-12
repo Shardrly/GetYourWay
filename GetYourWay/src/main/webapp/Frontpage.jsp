@@ -6,13 +6,7 @@
  
 <h1>Welcome travellers!</h1>
  
-<p>
-<a href="SearchPage.spr">Search</a>
-</p>
- 
- <p>
-<a href="FlightSearchPage.jsp">Search</a>
-</p>
+
  
  </div>  
    
