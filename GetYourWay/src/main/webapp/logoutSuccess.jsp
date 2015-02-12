@@ -1,6 +1,6 @@
 <jsp:include page="/header.jsp"/>
 
-<meta http-equiv="refresh" content="2; url=Frontpage.html" />
+<meta http-equiv="refresh" content="2; url=Frontpage.spr" />
 
 <P>
 
