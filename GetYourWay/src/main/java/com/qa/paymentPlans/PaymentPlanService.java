@@ -1,5 +1,7 @@
 package com.qa.paymentPlans;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -17,7 +19,7 @@ public class PaymentPlanService {
 	}
 	
 	public PaymentPlan getPaymentPlanByName(String name) throws Exception {
-		if (name.matches("^[A-Za-z]$")) {
+		if (name.matches("^[a-zA-Z]+$")) {
 			
 	        PaymentPlan pPlan = mongoTemplate.findOne(Query.query(Criteria.where("name").is(name)), PaymentPlan.class);
 			
@@ -28,8 +30,13 @@ public class PaymentPlanService {
 	        return pPlan;
 	       
     	} else {
-    		throw new Exception("Bad payment plan");
+    		throw new Exception("Bad payment plan: " + name);
     	}
     }
+	
+	public List<PaymentPlan> getAllPaymentPlans() {
+		return mongoTemplate.find(Query.query(Criteria.where("name").exists(true)), PaymentPlan.class);				
+		
+	}
 
 }
