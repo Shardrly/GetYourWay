@@ -60,5 +60,10 @@ public class MainController {
 	public String accessDenied() {
 		return "accessDenied.jsp";
 	}
+	
+	@RequestMapping(value="/Feedback.uspr")
+	public String feedback() {
+		return "Feedback.jsp";
+	}
 
 }
