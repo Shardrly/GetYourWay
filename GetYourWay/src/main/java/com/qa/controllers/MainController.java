@@ -50,6 +50,11 @@ public class MainController {
 	public String logoutGeneralError() {
 		return "login_generic_error_page.jsp";
 	}
+	
+	@RequestMapping(value="/Feedback.uspr")
+	public String feedback() {
+		return "Feedback.jsp";
+	}
 
 
 }
