@@ -63,11 +63,11 @@ public class SearchController {
 				
 			} else if (request.getParameter("mode").equals("Flights")) {
 				RequestDispatcher rd = request.getRequestDispatcher("flightResults.jsp");
-				String originlat  = (String) request.getAttribute("originlat");
-				String originlong  = (String) request.getAttribute("originlong");
-				String destlat  = (String) request.getAttribute("destlat");
-				String destlong  = (String) request.getAttribute("destlong");
-				String date = (String) request.getAttribute("date");
+				String originlat  = (String) request.getParameter("originlat");
+				String originlong  = (String) request.getParameter("originlong");
+				String destlat  = (String) request.getParameter("destlat");
+				String destlong  = (String) request.getParameter("destlong");
+				String date = (String) request.getParameter("datepicker");
 				
 				List<String> searches = AirportSearch.BuildQuery(originlat, originlong, destlat, destlong);
 				AirportList originairports = AirportQuerier.queryAirports((searches.get(0)));
