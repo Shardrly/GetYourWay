@@ -28,6 +28,10 @@
     <servlet-name>appServlet</servlet-name>
     <url-pattern>*.spr</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>appServlet</servlet-name>
+    <url-pattern>*.uspr</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -40,11 +44,11 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <error-page>
-    <location>/general-error.jsp</location>
+    <location>/errorGeneral.spr</location>
 </error-page>
   
   
 <welcome-file-list>
-		<welcome-file>Frontpage.html</welcome-file>
+		<welcome-file>Frontpage.spr</welcome-file>
 	</welcome-file-list>
 </web-app>

@@ -19,7 +19,7 @@ public class PaymentPlanService {
 	}
 	
 	public PaymentPlan getPaymentPlanByName(String name) throws Exception {
-		if (name.matches("^[A-Za-z]$")) {
+		if (name.matches("^[a-zA-Z]+$")) {
 			
 	        PaymentPlan pPlan = mongoTemplate.findOne(Query.query(Criteria.where("name").is(name)), PaymentPlan.class);
 			
@@ -30,7 +30,7 @@ public class PaymentPlanService {
 	        return pPlan;
 	       
     	} else {
-    		throw new Exception("Bad payment plan");
+    		throw new Exception("Bad payment plan: " + name);
     	}
     }
 	

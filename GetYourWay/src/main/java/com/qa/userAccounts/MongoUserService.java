@@ -100,5 +100,22 @@ public class MongoUserService implements UserDetailsService
     	mongoTemplate.save(user,"users");
         
     }
+    
+    public void checkUserInDate(String username) {
+    	username = username.toUpperCase();
+    	
+    	if (username.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$")) {
+    			
+	        MongoUserDetails user = mongoTemplate.findOne(Query.query(Criteria.where("username").is(username)), MongoUserDetails.class);
+	        
+	        if( user == null ) {
+	        	System.out.println("Could not find user");
+	            throw new UsernameNotFoundException( "Oops!" );
+	        }
+	        
+	        user.checkAccountExpired();
+	        mongoTemplate.save(user,"users");
+    	}
+    }
      
 }
