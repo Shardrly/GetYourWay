@@ -3,9 +3,9 @@
 <div id="centerDoc">
 
 </div>
- 
-     
 <iframe src="weather.html" height="500px" width="700px" scrolling="no" style="overflow: hidden">
+</iframe>
+<iframe src="gMaps.html" height="500px" width="800px" style="overflow: hidden" >
 </iframe>
 
 <div id= botDoc>
