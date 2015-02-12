@@ -50,7 +50,7 @@
       	<intercept-url pattern="/*.js" access="permitAll"/>
         <form-login login-page="/login.jsp"  />
         <intercept-url pattern="/welcome*" access="hasRole('user')" />
-		<logout logout-success-url="/logoutSuccess" />
+		<logout logout-success-url="/logoutSuccess.jsp" />
         <intercept-url pattern="*/views*" access="hasRole('user')"/>
  
     </http>

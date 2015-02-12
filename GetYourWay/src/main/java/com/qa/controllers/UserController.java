@@ -43,13 +43,13 @@ public class UserController {
 			mongoUserService.addNewUser(j_username, j_password);
 			System.out.println("Registration Succesful");
 			
-			return "/choosePlan.spr";
+			return "/choosePlan";
 		} catch (GYWSecFormatException e) {
 			return "/registerdetails.spr";
 		}
 	}
 	
-	@RequestMapping(value="/choosePlan.spr*")
+	@RequestMapping(value="/choosePlan.spr")
 	public ModelAndView choosePlan() {
 		
 		ArrayList<PaymentPlan> planList = (ArrayList<PaymentPlan>)paymentPlanService.getAllPaymentPlans();
