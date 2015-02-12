@@ -11,6 +11,11 @@ public class ScheduledFlights {
 		return scheduledFlights;
 	}
 
+	@Override
+	public String toString() {
+		return "ScheduledFlights [scheduledFlights=" + scheduledFlights + "]";
+	}
+
 	public void setScheduledFlights(List<Flights> scheduledFlights) {
 		scheduledFlights = scheduledFlights;
 	}

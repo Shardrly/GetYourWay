@@ -10,7 +10,6 @@ public class AirportQuerier {
 		
 	        RestTemplate restTemplate = new RestTemplate();
 		    String JSONstring = restTemplate.getForObject(query, String.class);
-		    System.out.println("QUERY"+JSONstring);
 		    Gson gson = new Gson();
 			AirportList airports = gson.fromJson(JSONstring,AirportList.class);
 			return airports;
