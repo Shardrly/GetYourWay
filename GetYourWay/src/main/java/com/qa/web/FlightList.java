@@ -17,7 +17,7 @@ public class FlightList {
 	    Gson gson = new Gson();
 //	    AirportList airports = gson.fromJson(JSONstring1,AirportList.class);
 	    ScheduledFlights ScheduledFlights = gson.fromJson(JSONstring,ScheduledFlights.class);
-	  
+//	  
 //	     for (int i=0; i<airports.getAirports().size();i++){
 //	    	if (airports.getAirports().get(i).getClassification()>2){
 //	    		continue;
