@@ -1,5 +1,7 @@
 package com.qa.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -28,10 +30,10 @@ public class SearchController {
 
 	@RequestMapping(value = "/Search.uspr")
 	public String search(
-			@AuthenticationPrincipal MongoUserDetails activeUser)
+			@AuthenticationPrincipal Principal activeUser)
 			throws Exception {
 		
-		if (mongoUserService.checkUserInDate(activeUser)) {
+		if (mongoUserService.checkUserInDate(activeUser.getName())) {
 			return "/FlightSearchPage.jsp";
 		} else {
 			return "/choosePlan.spr";
@@ -44,7 +46,6 @@ public class SearchController {
 			HttpServletResponse response,
 			@AuthenticationPrincipal MongoUserDetails activeUser)
 			throws Exception {
-
 
 			if (request.getParameter("mode").equals("DrivingResults")) {
 				RequestDispatcher rd = request.getRequestDispatcher("drivingResults.jsp");

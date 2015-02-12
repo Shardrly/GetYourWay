@@ -27,14 +27,14 @@ function HtmlEncode(s)
 <div id="dolphinnav">
  <ul>
   <li><a href="Frontpage.spr" title="" class="current"><span>Home</span></a></li>
-  <li><a href="Search.uspr" title="" class="current"><span>About Us</span></a></li>
+  <li><a href="Search.uspr" title="" class="current"><span>Search</span></a></li>
   <sec:authorize access="isAuthenticated()" var="isLoggedIn" />
   <c:if test="${isLoggedIn}">
   <li><a href="choosePlan.spr" title="" class="current"><span>Choose Payment Plan</span></a></li>
   <li><a href="logout.spr" title="" class="current"><span>Logout <sec:authentication property="principal.username"/></span></a></li>
   </c:if>
   <c:if test="${! isLoggedIn}">
-  <li><a href="choosePlan.spr" title="" class="current"><span>Register</span></a></li>
+  <li><a href="register.spr" title="" class="current"><span>Register</span></a></li>
   <li><a href="login.spr" title="" class="current"><span>Login</span></a></li>
   </c:if>
   <li><a href="about.spr" title="" class="current"><span>About Us</span></a></li>
