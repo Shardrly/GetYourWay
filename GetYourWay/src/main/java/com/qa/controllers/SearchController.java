@@ -13,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.qa.flightsearch.AirportSearch;
+import com.qa.flightsearch.FlightsSearch;
 import com.qa.paymentPlans.PaymentPlanService;
 import com.qa.userAccounts.MongoUserDetails;
 import com.qa.userAccounts.MongoUserService;
 import com.qa.web.AirportList;
 import com.qa.web.AirportQuerier;
+import com.qa.web.FlightQuerier;
+import com.qa.web.ScheduledFlights;
 
 @Controller
 public class SearchController {
@@ -46,7 +49,7 @@ public class SearchController {
 		
 	}
 	
-	@Autowired
+
 	@RequestMapping(value = "/SearchResults.uspr")
 	public void searchResults(HttpServletRequest request,
 			HttpServletResponse response,
@@ -72,10 +75,12 @@ public class SearchController {
 				
 				List<String> originairportcodes = new ArrayList<String>();
 				List<String> destairportcodes = new ArrayList<String>();
+				List<String> flightqueries = new ArrayList<String>();
 					
 				  for (int i=0; i<originairports.getAirports().size();i++){
-				    	if (originairports.getAirports().get(i).getClassification()>2){
+				    	if (originairports.getAirports().get(i).getClassification()<2){
 				    		originairportcodes.add(originairports.getAirports().get(i).getFs());
+				    		
 				    	}
 				    	else {
 				    		continue;
@@ -83,15 +88,40 @@ public class SearchController {
 				  }
 				   
 				  for (int i=0; i<destairports.getAirports().size();i++){
-				    	if (destairports.getAirports().get(i).getClassification()>2){
+				    	if (destairports.getAirports().get(i).getClassification()<2){
 				    		destairportcodes.add(destairports.getAirports().get(i).getFs());
+				    		
 				    	}
 				    	else {
 				    		continue;
 				    	}
 				  }
-				  
-				  
+				  if (destairportcodes.size()<originairportcodes.size()){
+					  for (int i=0; i<originairportcodes.size(); i++){
+						  for (int j=0; j<destairportcodes.size();j++){
+						  flightqueries.add(FlightsSearch.BuildQuery(originairportcodes.get(i),destairportcodes.get(j), date));
+						  }
+					  }
+				  }
+				  else if (destairportcodes.size()>originairportcodes.size()){
+					  for (int i=0; i<destairportcodes.size(); i++){
+						  for (int j=0; j<originairportcodes.size();j++){
+						  flightqueries.add(FlightsSearch.BuildQuery(originairportcodes.get(j),destairportcodes.get(i), date));
+						  }
+					  }
+				  }
+				  else {
+					  for (int i=0; i<destairportcodes.size(); i++){
+						  flightqueries.add(FlightsSearch.BuildQuery(originairportcodes.get(i),destairportcodes.get(i), date));
+						  }
+					  }
+				List<ScheduledFlights> flights= new ArrayList<ScheduledFlights>();
+				for (int i=0; i<flightqueries.size(); i++){
+					flights.add(FlightQuerier.queryFlights(flightqueries.get(i)));
+				}
+				
+				request.setAttribute("Schedule", flights);
+				
 				rd.forward(request, response);
 				
 			} else {

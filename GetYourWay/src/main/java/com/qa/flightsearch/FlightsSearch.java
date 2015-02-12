@@ -13,15 +13,30 @@ import com.qa.web.TimeTest;
 
 public class FlightsSearch {
 
-	    public static String BuildQuery(String airportcode, String destinapcode, String date){
+	    @SuppressWarnings("deprecation")
+		public static String BuildQuery(String airportcode, String destinapcode, String date){
 		
 	    String origincode=airportcode;
 		String destcode=destinapcode;
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+		int yearint =0;
+		int monthint=0;
+		int dayint=0;
 		
-		String year;
-		String month;
-		String day;
+		try {
+			Date datetest = sdf.parse(date);
+			yearint = datetest.getYear();
+			monthint = datetest.getMonth();
+			dayint = datetest.getDay();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String year= ""+yearint;
+		String month = ""+monthint;
+		String day = ""+dayint;
 			
 	    	
 //		   curl -v  -X GET "https://api.flightstats.com/flex/schedules/rest/v1/json/from/LHR/to/CDG/arriving/2015/2/13?appId=208593e7&appKey=24ff9976068fc000c241363fd8434a17&extendedOptions=useInlinedReferences"
