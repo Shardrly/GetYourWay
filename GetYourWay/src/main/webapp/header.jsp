@@ -3,7 +3,7 @@
 <html>
 
 <head>
-<title>First CSS Tutorial</title>
+
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link href="NewFile.css" rel="stylesheet" type="text/css">
 </head>
@@ -13,11 +13,12 @@
 <div id="dolphincontainer">
 <div id="dolphinnav">
  <ul>
-  <li><a href="Frontpage.html" title="" class="current"><span>Home</span></a></li>
+  <li><a href="Frontpage.jsp" title="" class="current"><span>Home</span></a></li>
   <li><a href="register.jsp" title="" class="current"><span>Register</span></a></li>
   <li><a href="login.jsp" title="" class="current"><span>Login</span></a></li>
   <li><a href="about.jsp" title="" class="current"><span>About Us</span></a></li>
-
+  <li><a href="Feedback.jsp" title="" class="current">Feedback</a></li>
+  <li><a href="choosePlan.jsp" title="" class="current">Choose Plan</a></li>
  </ul>
 </div>
 </div>
