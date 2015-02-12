@@ -68,6 +68,7 @@ public class SearchController {
 				String destlat  = (String) request.getParameter("destlat");
 				String destlong  = (String) request.getParameter("destlong");
 				String date = (String) request.getParameter("datepicker");
+				System.out.println(originlat+" , "+destlong);
 				
 				List<String> searches = AirportSearch.BuildQuery(originlat, originlong, destlat, destlong);
 				AirportList originairports = AirportQuerier.queryAirports((searches.get(0)));
