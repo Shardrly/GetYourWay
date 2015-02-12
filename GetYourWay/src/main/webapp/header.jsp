@@ -34,7 +34,7 @@ function HtmlEncode(s)
   <li><a href="logout.spr" title="" class="current"><span>Logout <sec:authentication property="principal.username"/></span></a></li>
   </c:if>
   <c:if test="${! isLoggedIn}">
-  <li><a href="register.spr" title="" class="current"><span>Register</span></a></li>
+  <li><a href="choosePlan.spr" title="" class="current"><span>Register</span></a></li>
   <li><a href="login.spr" title="" class="current"><span>Login</span></a></li>
   </c:if>
   <li><a href="about.spr" title="" class="current"><span>About Us</span></a></li>
