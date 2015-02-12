@@ -51,35 +51,36 @@ public class SearchController {
 	
 
 	@RequestMapping(value = "/SearchResults.uspr")
-	public void searchResults(HttpServletRequest request,
+	public String searchResults(HttpServletRequest request,
 			HttpServletResponse response,
 			@AuthenticationPrincipal MongoUserDetails activeUser)
 			throws Exception {
-
-
+			String page =null;
+			
 			if (request.getParameter("mode").equals("DrivingResults")) {
-				RequestDispatcher rd = request.getRequestDispatcher("drivingResults.jsp");
-				rd.forward(request, response);
+//				RequestDispatcher rd = request.getRequestDispatcher("drivingResults.jsp");
+				page="drivingResults.jsp";
+				return page;
 				
 			} else if (request.getParameter("mode").equals("Flights")) {
-				RequestDispatcher rd = request.getRequestDispatcher("flightResults.jsp");
+//				RequestDispatcher rd = request.getRequestDispatcher("flightResults.jsp");
+				page="flightResults.jsp";
 				String originlat  = (String) request.getParameter("originlat");
 				String originlong  = (String) request.getParameter("originlong");
 				String destlat  = (String) request.getParameter("destlat");
 				String destlong  = (String) request.getParameter("destlong");
 				String date = (String) request.getParameter("datepicker");
-				System.out.println(originlat+" , "+destlong);
 				
 				List<String> searches = AirportSearch.BuildQuery(originlat, originlong, destlat, destlong);
 				AirportList originairports = AirportQuerier.queryAirports((searches.get(0)));
 				AirportList destairports = AirportQuerier.queryAirports((searches.get(1)));
-				
+					
 				List<String> originairportcodes = new ArrayList<String>();
 				List<String> destairportcodes = new ArrayList<String>();
 				List<String> flightqueries = new ArrayList<String>();
 					
 				  for (int i=0; i<originairports.getAirports().size();i++){
-				    	if (originairports.getAirports().get(i).getClassification()<2){
+				    	if (originairports.getAirports().get(i).getClassification()<=2){
 				    		originairportcodes.add(originairports.getAirports().get(i).getFs());
 				    		
 				    	}
@@ -89,7 +90,7 @@ public class SearchController {
 				  }
 				   
 				  for (int i=0; i<destairports.getAirports().size();i++){
-				    	if (destairports.getAirports().get(i).getClassification()<2){
+				    	if (destairports.getAirports().get(i).getClassification()<=2){
 				    		destairportcodes.add(destairports.getAirports().get(i).getFs());
 				    		
 				    	}
@@ -122,9 +123,9 @@ public class SearchController {
 				}
 				
 				request.setAttribute("Schedule", flights);
-				
-				rd.forward(request, response);
-				
+				System.out.println(flights);
+//				rd.forward(request, response);
+				return page;
 			} else {
 				throw new Exception("Bad flight mode: "
 						+ request.getParameter("mode"));

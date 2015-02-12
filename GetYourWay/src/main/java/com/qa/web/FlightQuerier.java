@@ -10,6 +10,7 @@ public class FlightQuerier {
 			
 		        RestTemplate restTemplate = new RestTemplate();
 			    String JSONstring = restTemplate.getForObject(query, String.class);
+			    System.out.println(JSONstring);
 			    Gson gson = new Gson();
 				ScheduledFlights flights = gson.fromJson(JSONstring,ScheduledFlights.class);
 				return flights;

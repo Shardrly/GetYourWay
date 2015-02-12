@@ -44,10 +44,8 @@
 								if (status == google.maps.GeocoderStatus.OK) {
 									customersearchlat[customersearchlat.length] = results[0].geometry.location
 											.lat();
-									alert(customersearchlat[customersearchlat.length]);
 									customersearchlong[customersearchlong.length] = results[0].geometry.location
 											.lng();
-									alert(customersearchlong[customersearchlong.length]);
 								} else {
 									$('.push-down').text(
 											"Something went wrong " + status);
@@ -69,9 +67,8 @@
 											"Something went wrong " + status);
 								}
 							});
-		};
-	</script>
-	<script>
+		
+
 		$(function() {
 			$('#originlat').val(customersearchlat[0]);
 		});
@@ -84,6 +81,7 @@
 		$(function() {
 			$('#destlong').val(customersearchlong[1]);
 		});
+		};
 	</script>
 
 
@@ -96,7 +94,7 @@
 
 <body>
 <body onload="myIP()">
-	<form method="post" action="SearchResults.uspr">
+	<form method="post" action="SearchResults.uspr" onsubmit="myIP()">
 		Origin: <input id="origin" type="TEXT" name="origin" required>
 		<br> Destination: <input id="dest" type="TEXT" name="destination"
 			required>

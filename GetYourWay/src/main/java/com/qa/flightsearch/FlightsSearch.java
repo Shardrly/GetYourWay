@@ -26,7 +26,7 @@ public class FlightsSearch {
 		
 		try {
 			Date datetest = sdf.parse(date);
-			yearint = datetest.getYear();
+			yearint = datetest.getYear() + 1900;
 			monthint = datetest.getMonth();
 			dayint = datetest.getDay();
 		} catch (ParseException e) {
@@ -51,9 +51,11 @@ public class FlightsSearch {
 		String appKey = "appKey=24ff9976068fc000c241363fd8434a17";
 
 		FlightsQuery = baseSearch + origincode + "/to/" + destcode
-				+ "/arriving/" + year + "/" + month + "/" + day + "?" + appId
+				+ "/arriving/" + year + "/" + day + "/" + month + "?" + appId
 				+ appKey + "&extendedOptions=useInlinedReferences";
 	
+		System.out.println(FlightsQuery);
+		
 		return FlightsQuery;
 		/* Now send the query and prepare the REST setup
 		 * 
