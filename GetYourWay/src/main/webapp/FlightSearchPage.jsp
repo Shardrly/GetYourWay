@@ -99,7 +99,7 @@
 		<br> Destination: <input id="dest" type="TEXT" name="destination"
 			required>
 		<p>
-			Date: <input type="text" id="datepicker" required name="date">
+			Date: <input type="text" id="datepicker" required name="datepicker">
 		</p>
 		<input type="hidden" id="originlat" name="originlat"/> 
 		<input type="hidden" id="originlong" name="originlong"/> 
